@@ -20,7 +20,7 @@ class ShareXenJS {
 		} else return { err: true, endpoint: "upload", code: "403", error: "File is a required argument", exists: false, time: -1 };
 		let res;
 		if (!image.startsWith("file:")) {
-			res = await request({ uri: image, encoding: null, resolveWithFullResponse: true }).catch(err => { return { errr: true, endpoint: "upload", code: "403", error: errr, time: -1 }; });
+			res = await request({ uri: image, encoding: null, resolveWithFullResponse: true }).catch(errr => { return { err: true, endpoint: "upload", code: "403", error: errr, time: -1 }; });
 			if (!res) return { err: true, endpoint: "upload", code: "403", error: "File cannot be downloaded", time: -1 };
 			res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "upload", token: this.token, image: { value: res.body, options: { contentType: res.headers["content-type"], filename: `file.${res.headers["content-type"].split("/").pop().replace("jpeg", "jpg")}` } } }, simple: false }).catch(errr => { return { err: true, endpoint: "upload", code: "403", error: errr, time: -1 }; });
 			if (!res) return { err: true, endpoint: "upload", code: "403", error: "File cannot be uploaded", time: -1 };
@@ -28,7 +28,7 @@ class ShareXenJS {
 			if (res.status === "error") return { err: true, endpoint: res.endpoint, code: res.http_code, error: res.error, time: res.execution_time };
 			else return { err: false, api_version: res.api_version, endpoint: res.endpoint, code: res.http_code, filename: res.filename, url: res.url, deletion_url: res.deletion_url, key: res.key, iterations: res.iteration_count, time: res.execution_time };
 		} else {
-			res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "upload", token: this.token, image:{ value: fs.createReadStream(`${image.replace("file:", "")}`), options: { filename: `${image.replace("file:", "")}`, contentType: null } } }, simple: false }).catch(errr => { return { errr: true, endpoint: "upload", code: "403", error: errr, time: -1 } });
+			res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "upload", token: this.token, image:{ value: fs.createReadStream(`${image.replace("file:", "")}`), options: { filename: `${image.replace("file:", "")}`, contentType: null } } }, simple: false }).catch(errr => { return { err: true, endpoint: "upload", code: "403", error: errr, time: -1 } });
 			if (!res) return { err: true, endpoint: "upload", code: "403", error: "File cannot be uploaded", time: -1 };
 			res = JSON.parse(res);
 			if (res.status === "error") return { err: true, endpoint: res.endpoint, code: res.http_code, error: res.error, time: res.execution_time };

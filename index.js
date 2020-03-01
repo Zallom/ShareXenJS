@@ -20,15 +20,15 @@ class ShareXenJS {
 		} else return { err: true, endpoint: "upload", code: "403", error: "File is a required argument", exists: false, time: -1 };
 		let res;
 		if (!image.startsWith("file:")) {
-			res = await request({ uri: image, encoding: null, resolveWithFullResponse: true }).catch(err => { return console.error(err); });
+			res = await request({ uri: image, encoding: null, resolveWithFullResponse: true }).catch(err => { return { errr: true, endpoint: "upload", code: "403", error: errr, time: -1 }; });
 			if (!res) return { err: true, endpoint: "upload", code: "403", error: "File cannot be downloaded", time: -1 };
-			res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "upload", token: this.token, image: { value: res.body, options: { contentType: res.headers["content-type"], filename: `file.${res.headers["content-type"].split("/").pop().replace("jpeg", "jpg")}` } } }, simple: false }).catch(err => { return console.error(err); });
+			res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "upload", token: this.token, image: { value: res.body, options: { contentType: res.headers["content-type"], filename: `file.${res.headers["content-type"].split("/").pop().replace("jpeg", "jpg")}` } } }, simple: false }).catch(errr => { return { err: true, endpoint: "upload", code: "403", error: errr, time: -1 }; });
 			if (!res) return { err: true, endpoint: "upload", code: "403", error: "File cannot be uploaded", time: -1 };
 			res = JSON.parse(res);
 			if (res.status === "error") return { err: true, endpoint: res.endpoint, code: res.http_code, error: res.error, time: res.execution_time };
 			else return { err: false, api_version: res.api_version, endpoint: res.endpoint, code: res.http_code, filename: res.filename, url: res.url, deletion_url: res.deletion_url, key: res.key, iterations: res.iteration_count, time: res.execution_time };
 		} else {
-			res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "upload", token: this.token, image:{ value: fs.createReadStream(`${image.replace("file:", "")}`), options: { filename: `${image.replace("file:", "")}`, contentType: null } } }, simple: false }).catch(err => { return console.error(err); });
+			res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "upload", token: this.token, image:{ value: fs.createReadStream(`${image.replace("file:", "")}`), options: { filename: `${image.replace("file:", "")}`, contentType: null } } }, simple: false }).catch(errr => { return { errr: true, endpoint: "upload", code: "403", error: errr, time: -1 } });
 			if (!res) return { err: true, endpoint: "upload", code: "403", error: "File cannot be uploaded", time: -1 };
 			res = JSON.parse(res);
 			if (res.status === "error") return { err: true, endpoint: res.endpoint, code: res.http_code, error: res.error, time: res.execution_time };
@@ -40,19 +40,19 @@ class ShareXenJS {
 		if (file !== undefined) { 
 			if (file.match(/^https?:\/\/.+\./) || file.match(/^http?:\/\/.+\./)) {
 				image = file.replace(/[<>]/g, '').split('/').pop();
-				let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token, filename: image }, simple: false }).catch(err => { return console.error(err); });
+				let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token, filename: image }, simple: false }).catch(errr => { return { err: true, endpoint: "delete", code: "403", error: errr, exists: false, time: -1 }; });
 				if (!res) return { err: true, endpoint: "delete", code: "403", error: "File cannot be deleted", exists: false, time: -1 };
 				res = JSON.parse(res);
 				if (!res.file_exists) return { err: true, endpoint: "delete", code: "403", error: "File doesn't exists", exists: res.file_exists, time: res.execution_time };
 			} else {
 				image = file;
-				let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token, filename: image }, simple: false }).catch(err => { return console.error(err); });
+				let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token, filename: image }, simple: false }).catch(errr => { return { err: true, endpoint: "delete", code: "403", error: errr, exists: false, time: -1 }; });
 				if (!res) return { err: true, endpoint: "delete", code: "403", error: "File cannot be deleted", exists: false, time: -1 };
 				res = JSON.parse(res);
 				if (!res.file_exists) return { err: true, endpoint: "delete", code: "403", error: "File doesn't exists", exists: res.file_exists, time: res.execution_time };
 			}
 		} else return { err: true, endpoint: "delete", code: "403", error: "File is a required argument", exists: false, time: -1 };
-		let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "delete", token: this.token, filename: image }, simple: false }).catch(err => { return console.error(err); });
+		let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "delete", token: this.token, filename: image }, simple: false }).catch(errr => { return { err: true, endpoint: "delete", code: "403", error: errr, exists: false, time: -1 }; });
 		if (!res) return { err: true, endpoint: "delete", code: "403", error: "File cannot be deleted", exists: false, time: -1 };
 		res = JSON.parse(res);
 		if (res.status === "error") return { err: true, endpoint: res.endpoint, code: res.http_code, error: res.error, exists: true, time: res.execution_time };
@@ -64,19 +64,19 @@ class ShareXenJS {
 		if (file !== undefined) { 
 			if (file.match(/^https?:\/\/.+\./) || file.match(/^http?:\/\/.+\./)) {
 				image = file.replace(/[<>]/g, '').split('/').pop();
-				let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token, filename: image }, simple: false }).catch(err => { return console.error(err); });
+				let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token, filename: image }, simple: false }).catch(errr => { return { err: true, endpoint: "rename", code: "403", error: errr, exists: false, time: -1 }; });
 				if (!res) return { err: true, endpoint: "rename", code: "403", error: "File cannot be renamed", exists: false, time: -1 };
 				res = JSON.parse(res);
 				if (!res.file_exists) return { err: true, endpoint: res.endpoint, code: res.http_code, error: "File doesn't exists", exists: res.file_exists, time: res.execution_time };
 			} else {
 				image = file;
-				let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token, filename: image }, simple: false }).catch(err => { return console.error(err); });
+				let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token, filename: image }, simple: false }).catch(errr => { return { err: true, endpoint: "rename", code: "403", error: errr, exists: false, time: -1 }; });
 				if (!res) return { err: true, endpoint: "rename", code: "403", error: "File cannot be renamed", exists: false, time: -1 };
 				res = JSON.parse(res);
 				if (!res.file_exists) return { err: true, endpoint: res.endpoint, code: res.http_code, error: "File doesn't exists", exists: res.file_exists, time: res.execution_time };
 			}
 		} else return { err: true, endpoint: "rename", code: "403", error: "File is a required argument", exists: false, time: -1 };
-		let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "rename", token: this.token, filename: image, new_name: newfilename }, simple: false }).catch(err => { return console.error(err); });
+		let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "rename", token: this.token, filename: image, new_name: newfilename }, simple: false }).catch(errr => { return { err: true, endpoint: "rename", code: "403", error: errr, exists: false, time: -1 }; });
 		if (!res) return { err: true, endpoint: "rename", code: "403", error: "File cannot be renamed", exists: false, time: -1 };
 		res = JSON.parse(res);
 		if (res.status === "error") return { err: true, endpoint: res.endpoint, code: res.http_code, error: res.error, exists: true, time: res.execution_time };
@@ -88,7 +88,7 @@ class ShareXenJS {
 		if (file !== undefined) { 
 			if (file.match(/^https?:\/\/.+\./) || file.match(/^http?:\/\/.+\./)) image = file.replace(/[<>]/g, '').split('/').pop();
 			else image = file;
-			let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token, filename: image }, simple: false }).catch(err => { return console.error(err); });
+			let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token, filename: image }, simple: false }).catch(errr => { return { err: true, endpoint: "info", code: errr.statusCode, error: errr, exists: false, time: -1 }; });
 			if (!res) return { err: true, endpoint: "info", code: "403", error: "File cannot be reached", exists: false, time: -1 };
 			res = JSON.parse(res);
 			if (res.status === "error") return { err: true, api_version: res.api_version, endpoint: res.endpoint, code: res.http_code, error: res.error, time: res.execution_time };
@@ -102,7 +102,7 @@ class ShareXenJS {
 				}
 			}
 		} else {
-			let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token }, simple: false }).catch(err => { return console.error(err); });
+			let res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "info", token: this.token }, simple: false }).catch(errr => { return { err: true, endpoint: "info", code: "403", error: errr, exists: false, time: -1 }; });
 			if (!res) return { err: true, endpoint: "info", code: "403", error: "invalid_credentials", exists: false, time: -1 };
 			res = JSON.parse(res);
 			if (res.status === "error") return { err: true, api_version: res.api_version, endpoint: res.endpoint, code: res.http_code, error: res.error, time: res.execution_time };

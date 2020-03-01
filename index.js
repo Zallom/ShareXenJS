@@ -22,6 +22,7 @@ class ShareXenJS {
 		if (!image.startsWith("file:")) {
 			res = await request({ uri: image, encoding: null, resolveWithFullResponse: true }).catch(errr => { return { err: true, endpoint: "upload", code: "403", error: errr, time: -1 }; });
 			if (!res) return { err: true, endpoint: "upload", code: "403", error: "File cannot be downloaded", time: -1 };
+			if (!res.headers) return { err: true, endpoint: "upload", code: "403", error: "File cannot be downloaded", time: -1 };
 			if (res.status === "error") return { err: true, endpoint: res.endpoint, code: res.http_code, error: res.error, time: res.execution_time };
 			res = await request({ uri: this.dest, method: "POST", formData: { endpoint: "upload", token: this.token, image: { value: res.body, options: { contentType: res.headers["content-type"], filename: `file.${res.headers["content-type"].split("/").pop().replace("jpeg", "jpg")}` } } }, simple: false }).catch(errr => { return { err: true, endpoint: "upload", code: "403", error: errr, time: -1 }; });
 			if (!res) return { err: true, endpoint: "upload", code: "403", error: "File cannot be uploaded", time: -1 };

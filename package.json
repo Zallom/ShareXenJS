@@ -1,14 +1,14 @@
 {
   "name": "sharexenjs",
-  "version": "1.0.0",
-  "description": "A powerful javascript package for ShareXen, a custom uploader for ShareX",
+  "version": "1.0.1",
+  "description": "A powerful javascript package for ShareXen, a ShareX Custom Uploader",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Zallom/sharexenjs.git"
+    "url": "git+https://github.com/Zallom/ShareXenJS.git"
   },
   "keywords": [
     "nodejs",
@@ -22,9 +22,9 @@
   "author": "Zallom",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Zallom/sharxenjs/issues"
+    "url": "https://github.com/Zallom/ShareXenJS/issues"
   },
-  "homepage": "https://github.com/Zallom/sharxenjs#readme",
+  "homepage": "https://github.com/Zallom/ShareXenJS#readme",
   "dependencies": {
     "fs": "0.0.1-security",
     "request": "^2.88.2",

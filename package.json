@@ -1,6 +1,6 @@
 {
   "name": "sharexenjs",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A powerful javascript package for ShareXen, a ShareX Custom Uploader",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,11 @@
     "uploader",
     "upload",
     "javascript",
-    "js"
+    "js",
+    "image",
+    "image uploader",
+    "image upload",
+    "sharexenjs"
   ],
   "author": "Zallom",
   "license": "MIT",

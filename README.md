@@ -1,8 +1,8 @@
 # ShareXenJS - Global
 
 [![Zallom's Twitter](https://img.shields.io/badge/Zallom's-Twitter-1DA1F2?style=for-the-badge&logo=twitter)](https://twitter.com/ZallomDEV?ref_src=twsrc%5Etfw "@ZallomDEV - Twitter") 
-[![Team Wyvern's Twitter](https://img.shields.io/badge/TeamWyvern's-Twitter-1DA1F2?style=for-the-badge&logo=twitter)](https://twitter.com/WyvernTeam?ref_src=twsrc%5Etfw, "@WyvernTeam - Twitter") 
-[![Team Wyvern's Discord](https://img.shields.io/badge/TeamWyvern's-Discord-7289DA?style=for-the-badge&logo=discord)](https://gg.discord.fr/Wyvern, "WyvernTeam - Discord")
+[![Team Wyvern's Twitter](https://img.shields.io/badge/TeamWyvern's-Twitter-1DA1F2?style=for-the-badge&logo=twitter)](https://twitter.com/WyvernTeam?ref_src=twsrc%5Etfw "@WyvernTeam - Twitter") 
+[![Team Wyvern's Discord](https://img.shields.io/badge/TeamWyvern's-Discord-7289DA?style=for-the-badge&logo=discord)](https://gg.discord.fr/Wyvern "WyvernTeam - Discord")
 [![ShareXenJS's NPM](https://img.shields.io/badge/ShareXenJS-NPM-CB3837?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/sharexenjs "sharexenjs - NPM")
 
 [ShareXenJS](https://github.com/Zallom/ShareXenJS) is a powerful javascript package for [ShareXen](https://github.com/Xenthys/ShareXen), a ShareX Custom Uploader.

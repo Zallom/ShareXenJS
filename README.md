@@ -12,7 +12,7 @@
 * [File uploads](https://github.com/Zallom/ShareXenJS#upload-a-file)
 * [File deletion](https://github.com/Zallom/ShareXenJS#delete-a-file)
 * [File renaming](https://github.com/Zallom/ShareXenJS#rename-a-file)
-* [File infomations](https://github.com/Zallom/ShareXenJS#get-infomation-from-a-file)
+* [File informations](https://github.com/Zallom/ShareXenJS#get-infomation-from-a-file)
 * [Server informations](https://github.com/Zallom/ShareXenJS#obtain-global-information-from-the-server-used)
 
 Please note that this package make easier the integration of [ShareXen](https://github.com/Xenthys/ShareXen) into a nodejs application (in a Discord bot for example). Features may be changed during updates.

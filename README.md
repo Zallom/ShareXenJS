@@ -12,7 +12,7 @@
 * [File uploads](https://github.com/Zallom/ShareXenJS#upload-a-file)
 * [File deletion](https://github.com/Zallom/ShareXenJS#delete-a-file)
 * [File renaming](https://github.com/Zallom/ShareXenJS#rename-a-file)
-* [File infomations](https://github.com/Zallom/ShareXenJS#get-infomation-from-a-file)
+* [File informations](https://github.com/Zallom/ShareXenJS#get-infomation-from-a-file)
 * [Server informations](https://github.com/Zallom/ShareXenJS#obtain-global-information-from-the-server-used)
 
 Please note that this package make easier the integration of [ShareXen](https://github.com/Xenthys/ShareXen) into a nodejs application (in a Discord bot for example). Features may be changed during updates.
@@ -34,9 +34,9 @@ Before using this module please have first a functional [ShareXen Server](https:
 const sharexen = require("sharexenjs");
 
 // Give him the necessary information
-sharexen.login(WAY, TOKEN);
+sharexen.login(PATH, TOKEN);
 ```
-* The WAY is a link to the ShareXen Server PHP file on your webserver.
+* The PATH is a link to the ShareXen Server PHP file on your webserver.
 * The TOKEN is the character sequence that allows you to authenticate yourself on the ShareXen Server.
 
 ## **Upload a File**

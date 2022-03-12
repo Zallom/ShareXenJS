@@ -34,9 +34,9 @@ Before using this module please have first a functional [ShareXen Server](https:
 const sharexen = require("sharexenjs");
 
 // Give him the necessary information
-sharexen.login(WAY, TOKEN);
+sharexen.login(PATH, TOKEN);
 ```
-* The WAY is a link to the ShareXen Server PHP file on your webserver.
+* The PATH is a link to the ShareXen Server PHP file on your webserver.
 * The TOKEN is the character sequence that allows you to authenticate yourself on the ShareXen Server.
 
 ## **Upload a File**
